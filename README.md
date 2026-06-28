@@ -1,5 +1,5 @@
 
-# IBM Employee Attrition — The Cumulative Strain Hypothesis
+# IBM Employee Attrition — The Cumulative Attrition Risk Hypothesis
 
 **Research question:** How does the accumulation of work–life strain
 factors (overtime, business travel, and marital status) affect employee
@@ -616,7 +616,7 @@ table1_plot
 
 ![](README_files/figure-gfm/table1-1.png)<!-- -->
 
-\#Attrition Rate by Number of Strain Markers
+# Figure 3 — Attrition Rate by Number of Strain Markers
 
 ``` r
 library(scales)
@@ -634,7 +634,7 @@ ggplot(strain_tab, aes(factor(StrainLoad), rate)) +
 
 ![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-# 
+# Table — Cumulative Strain and Attrition Tests
 
 ``` r
 m_load <- glm(Attr ~ StrainLoad, binomial, ibm)
@@ -662,7 +662,7 @@ tibble(
 | Cochran-Armitage trend test | chi-square = 130.7, p \< 0.001 |
 | LRT: separate weights vs. simple count | p = 0.13 (no improvement) |
 
-\#part 3
+# Figure 4 — Attrition Rate by Strain Load and Pay Group
 
 ``` r
 attrition_summary <- ibm %>%
@@ -714,7 +714,7 @@ ggplot(attrition_summary, aes(x = PayGroup, y = factor(StrainLoad), fill = Attri
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-# correlation income ODS-Ratios
+# Table — Income Odds Ratios After Seniority Controls
 
 ``` r
 library(tidyverse)
@@ -776,235 +776,20 @@ income_seniority_table <- bind_rows(
   extract_income_effect(m_income_seniority, "Income + seniority controls")
 )
 
-cat('
-<style>
-.income-table-title {
-  text-align: center;
-  color: black;
-  font-weight: bold;
-  font-size: 11px;
-  margin-top: 3px;
-  margin-bottom: 4px;
-}
-
-.income-table {
-  margin-left: auto;
-  margin-right: auto;
-  border-collapse: collapse;
-  width: 46%;
-  max-width: 430px;
-  font-size: 11px;
-  color: black;
-
-.income-table th {
-  color: black;
-  font-weight: bold;
-  text-align: center;
-  padding: 5px 8px;
-  border-bottom: 2px solid #D9D9D9;
-  background-color: white;
-}
-
-.income-table td {
-  color: black;
-  text-align: center;
-  padding: 5px 8px;
-  border-bottom: 1px solid #E0E0E0;
-  background-color: white;
-}
-
-.income-table th:first-child,
-.income-table td:first-child {
-  text-align: left;
-  padding-left: 6px;
-}
-
-.income-table tr:last-child td {
-  border-bottom: none;
-}
-</style>
-
-<div class="income-table-title">
-Income OR after seniority controls
-</div>
-')
-```
-
-<style>
-.income-table-title {
-  text-align: center;
-  color: black;
-  font-weight: bold;
-  font-size: 11px;
-  margin-top: 3px;
-  margin-bottom: 4px;
-}
-&#10;.income-table {
-  margin-left: auto;
-  margin-right: auto;
-  border-collapse: collapse;
-  width: 46%;
-  max-width: 430px;
-  font-size: 11px;
-  color: black;
-&#10;.income-table th {
-  color: black;
-  font-weight: bold;
-  text-align: center;
-  padding: 5px 8px;
-  border-bottom: 2px solid #D9D9D9;
-  background-color: white;
-}
-&#10;.income-table td {
-  color: black;
-  text-align: center;
-  padding: 5px 8px;
-  border-bottom: 1px solid #E0E0E0;
-  background-color: white;
-}
-&#10;.income-table th:first-child,
-.income-table td:first-child {
-  text-align: left;
-  padding-left: 6px;
-}
-&#10;.income-table tr:last-child td {
-  border-bottom: none;
-}
-</style>
-
-<div class="income-table-title">
-
-Income OR after seniority controls
-
-</div>
-
-``` r
-income_seniority_table_compact <- income_seniority_table %>%
-  mutate(
-    Model = recode(
-      Model,
-      "Income only" = "Income only",
-      "Income + Age" = "Income + Age",
-      "Income + seniority controls" = "Income + seniority controls"
-    )
-  )
-
-kable(
-  income_seniority_table_compact,
-  format = "html",
-  escape = FALSE,
+knitr::kable(
+  income_seniority_table,
   align = c("l", "c", "c", "c"),
-  table.attr = 'class="income-table"'
+  caption = "Income OR after seniority controls"
 )
 ```
 
-<table class="income-table">
+| Model                       | Income OR |  95% CI   | p-value |
+|:----------------------------|:---------:|:---------:|:-------:|
+| Income only                 |   0.55    | 0.45–0.67 | \<0.001 |
+| Income + Age                |   0.64    | 0.52–0.80 | \<0.001 |
+| Income + seniority controls |   0.95    | 0.57–1.58 |  0.843  |
 
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-Model
-</th>
-
-<th style="text-align:center;">
-
-Income OR
-</th>
-
-<th style="text-align:center;">
-
-95% CI
-</th>
-
-<th style="text-align:center;">
-
-p-value
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-Income only
-</td>
-
-<td style="text-align:center;">
-
-0.55
-</td>
-
-<td style="text-align:center;">
-
-0.45–0.67
-</td>
-
-<td style="text-align:center;">
-
-\<0.001
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Income + Age
-</td>
-
-<td style="text-align:center;">
-
-0.64
-</td>
-
-<td style="text-align:center;">
-
-0.52–0.80
-</td>
-
-<td style="text-align:center;">
-
-\<0.001
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Income + seniority controls
-</td>
-
-<td style="text-align:center;">
-
-0.95
-</td>
-
-<td style="text-align:center;">
-
-0.57–1.58
-</td>
-
-<td style="text-align:center;">
-
-0.843
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
+Income OR after seniority controls
 
 # Logistic model with the three strain markers
 
