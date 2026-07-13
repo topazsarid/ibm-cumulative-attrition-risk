@@ -6,7 +6,6 @@ factors (overtime, business travel, and marital status) affect employee
 attrition, and can compensation mitigate it?
 
 **Authors:** Tzlil Hayne, Oded Shmuely, Amit Shaimen, Topaz Sarid
-(SISE2601)
 
 **Data:** the public IBM HR Analytics Employee Attrition dataset
 ([Kaggle](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset)).
