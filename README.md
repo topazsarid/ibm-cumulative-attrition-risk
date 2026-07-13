@@ -1,5 +1,5 @@
 
-# IBM Employee Attrition — The Cumulative Attrition Risk Hypothesis
+# IBM Employee Attrition - The Cumulative Attrition Risk Hypothesis
 
 **Research question:** How does the accumulation of work–life strain
 factors (overtime, business travel, and marital status) affect employee
@@ -64,7 +64,7 @@ base_rate
 
 # Data Analysis
 
-# Figure 1 — “Attrition Rate Across Work-Life Strain Markers”
+# Figure 1 - “Attrition Rate Across Work-Life Strain Markers”
 
 ``` r
 overall_attrition <- mean(ibm$Attr)
@@ -290,7 +290,7 @@ factor. Dashed line = overall average attrition rate
 (16.1%).</figcaption>
 </figure>
 
-# Figure 2 — Odds ratios from logistic regression
+# Figure 2 - Odds ratios from logistic regression
 
 ``` r
 model_or <- glm(
@@ -444,7 +444,7 @@ logistic regression model. Points show odds ratios and lines show 95%
 confidence intervals.</figcaption>
 </figure>
 
-# Table 1 — Logistic regression odds ratios
+# Table 1 - Logistic regression odds ratios
 
 ``` r
 model_or <- glm(
@@ -616,7 +616,7 @@ table1_plot
 
 ![](README_files/figure-gfm/table1-1.png)<!-- -->
 
-# Figure 3 — Attrition Rate by Number of Strain Markers
+# Figure 3 - Attrition Rate by Number of Strain Markers
 
 ``` r
 library(scales)
@@ -634,7 +634,7 @@ ggplot(strain_tab, aes(factor(StrainLoad), rate)) +
 
 ![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-# Table — Cumulative Strain and Attrition Tests
+# Table - Cumulative Strain and Attrition Tests
 
 ``` r
 m_load <- glm(Attr ~ StrainLoad, binomial, ibm)
@@ -662,7 +662,7 @@ tibble(
 | Cochran-Armitage trend test | chi-square = 130.7, p \< 0.001 |
 | LRT: separate weights vs. simple count | p = 0.13 (no improvement) |
 
-# Figure 4 — Attrition Rate by Strain Load and Pay Group
+# Figure 4 - Attrition Rate by Strain Load and Pay Group
 
 ``` r
 attrition_summary <- ibm %>%
@@ -714,7 +714,7 @@ ggplot(attrition_summary, aes(x = PayGroup, y = factor(StrainLoad), fill = Attri
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-# Table — Income Odds Ratios After Seniority Controls
+# Table - Income Odds Ratios After Seniority Controls
 
 ``` r
 library(tidyverse)
@@ -814,7 +814,7 @@ ggplot(roc, aes(fpr, tpr)) +
            label = paste0("AUC = ", round(auc, 2))) +
   scale_x_continuous(labels = scales::percent) +
   scale_y_continuous(labels = scales::percent) +
-  labs(title = "ROC Curve — Three-Marker Strain Model",
+  labs(title = "ROC Curve - Three-Marker Strain Model",
        x = "False positive rate", y = "True positive rate")
 ```
 
