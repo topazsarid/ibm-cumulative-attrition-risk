@@ -7,6 +7,8 @@ attrition, and can compensation mitigate it?
 
 **Authors:** Tzlil Hayne, Oded Shmuely, Amit Shaimen, Topaz Sarid
 
+**Report:** [Full report (PDF)](report/report.pdf) · [Presentation (PDF)](report/presentation.pdf)
+
 **Data:** the public IBM HR Analytics Employee Attrition dataset
 ([Kaggle](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset)).
 To reproduce, place `WA_Fn-UseC_-HR-Employee-Attrition.csv` in a `data/`
